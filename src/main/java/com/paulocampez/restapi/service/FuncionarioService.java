@@ -3,6 +3,7 @@ package com.paulocampez.restapi.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.paulocampez.restapi.model.Funcionario;
@@ -24,6 +25,10 @@ public class FuncionarioService {
 	
 	public Funcionario create(Funcionario funcionario) {
 		return funcionarioRepository.save(funcionario);
+	}
+	
+	public List<Funcionario> getByStatus(String status){ 
+		return funcionarioRepository.findByStatus(status);
 	}
 	
 }

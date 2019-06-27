@@ -28,6 +28,7 @@ public class Funcionario implements Serializable{
 	
 	@NotNull
 	private String Nome;
+	
 	@NotNull
 	private String Cpf;
 	@NotNull
@@ -95,5 +96,70 @@ public class Funcionario implements Serializable{
 		Status = status;
 	}
 	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((Cargo == null) ? 0 : Cargo.hashCode());
+		result = prime * result + ((Cpf == null) ? 0 : Cpf.hashCode());
+		result = prime * result + ((DataCad == null) ? 0 : DataCad.hashCode());
+		result = prime * result + ((Nome == null) ? 0 : Nome.hashCode());
+		result = prime * result + ((Salario == null) ? 0 : Salario.hashCode());
+		result = prime * result + ((Status == null) ? 0 : Status.hashCode());
+		result = prime * result + ((UfNasc == null) ? 0 : UfNasc.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Funcionario other = (Funcionario) obj;
+		if (Cargo == null) {
+			if (other.Cargo != null)
+				return false;
+		} else if (!Cargo.equals(other.Cargo))
+			return false;
+		if (Cpf == null) {
+			if (other.Cpf != null)
+				return false;
+		} else if (!Cpf.equals(other.Cpf))
+			return false;
+		if (DataCad == null) {
+			if (other.DataCad != null)
+				return false;
+		} else if (!DataCad.equals(other.DataCad))
+			return false;
+		if (Nome == null) {
+			if (other.Nome != null)
+				return false;
+		} else if (!Nome.equals(other.Nome))
+			return false;
+		if (Salario == null) {
+			if (other.Salario != null)
+				return false;
+		} else if (!Salario.equals(other.Salario))
+			return false;
+		if (Status == null) {
+			if (other.Status != null)
+				return false;
+		} else if (!Status.equals(other.Status))
+			return false;
+		if (UfNasc == null) {
+			if (other.UfNasc != null)
+				return false;
+		} else if (!UfNasc.equals(other.UfNasc))
+			return false;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 }

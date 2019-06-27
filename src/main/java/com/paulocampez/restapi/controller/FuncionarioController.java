@@ -30,6 +30,12 @@ public class FuncionarioController {
 		return funcionarioService.getAll();
 	}
 	
+	@GetMapping("/{status}")
+	public List<Funcionario> getByStatus(@RequestParam(value = "status", required = true) String status)
+	{
+		return funcionarioService.getByStatus(status);
+	}
+	
 	@GetMapping("/{id}")
 	public Funcionario getById(@RequestParam(value = "id", required = true) Long id)
 	{
