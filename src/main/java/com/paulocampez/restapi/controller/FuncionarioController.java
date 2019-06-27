@@ -42,12 +42,12 @@ public class FuncionarioController {
 		return funcionarioService.getById(id);
 	}
 	
-	@PostMapping
+	/*@PostMapping
 	public ResponseEntity<Funcionario> create(@RequestBody Funcionario funcionario)
 	{
 		Funcionario entity = funcionarioService.create(funcionario);
 		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
 	}
-	
+	*/
 	
 }

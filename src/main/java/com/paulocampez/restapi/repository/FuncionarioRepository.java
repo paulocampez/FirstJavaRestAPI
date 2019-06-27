@@ -24,7 +24,7 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
 	@Query("SELECT f FROM Funcionario WHERE p.salario LIKE LOWER(CONCAT ('%', :n1, '%'))")
 	List<Funcionario> findByDate(@Param("d1") Date d1, @Param("d2") Date d2);
 	
-	@Query("SELECT f FROM Funcionario WHERE p.salario LIKE LOWER(CONCAT ('%', :n1, '%'))")
+	@Query("SELECT f FROM Funcionario WHERE p.name LIKE LOWER(CONCAT ('%', :name, '%'))")
 	List<Funcionario> findByName(@Param("name") String name);
 	
 	@Query("SELECT f FROM Funcionario WHERE p.salario LIKE LOWER(CONCAT ('%', :n1, '%'))")

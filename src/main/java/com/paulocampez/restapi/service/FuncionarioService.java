@@ -31,7 +31,7 @@ public class FuncionarioService {
 		return funcionarioRepository.findByStatus(status);
 	}
 	
-	public List<Funcionario> getBySalary(Double n1, Double n2){
+	/*public List<Funcionario> getBySalary(Double n1, Double n2){
 		
 		return funcionarioRepository.findBySalary(n1,n2);
 	}
@@ -64,5 +64,5 @@ public class FuncionarioService {
 	public List<Funcionario> getByJob(String job)
 	{
 		return funcionarioRepository.findByJob(job);
-	}
+	}*/
 }
