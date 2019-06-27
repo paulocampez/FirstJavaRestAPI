@@ -1,9 +1,9 @@
 package com.paulocampez.restapi.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.paulocampez.restapi.model.Funcionario;
@@ -31,4 +31,38 @@ public class FuncionarioService {
 		return funcionarioRepository.findByStatus(status);
 	}
 	
+	public List<Funcionario> getBySalary(Double n1, Double n2){
+		
+		return funcionarioRepository.findBySalary(n1,n2);
+	}
+	
+	public List<Funcionario> getByUf(String uf){
+		
+		return funcionarioRepository.findByUf(uf);
+	}
+	
+	public List<Funcionario> getByDate(Date d1, Date d2)
+	{
+		return funcionarioRepository.findByDate(d1, d2);
+	}
+	
+	public List<Funcionario> getByName(String name)
+	{
+		return funcionarioRepository.findByName(name);
+	}
+	
+	public Funcionario getByTaxId(String cpf)
+	{
+		return funcionarioRepository.findByTaxId(cpf);
+	}
+	
+	public boolean DeleteByTaxId(String cpf)
+	{
+		return funcionarioRepository.deleteByTaxId(cpf);
+	}
+	
+	public List<Funcionario> getByJob(String job)
+	{
+		return funcionarioRepository.findByJob(job);
+	}
 }
