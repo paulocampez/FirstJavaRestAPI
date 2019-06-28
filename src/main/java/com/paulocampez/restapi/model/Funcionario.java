@@ -27,21 +27,21 @@ public class Funcionario implements Serializable{
 	private Long id;
 	
 	@NotNull
-	private String Nome;
+	private String nome;
 	
 	@NotNull
-	private String Cpf;
+	private String cpf;
 	@NotNull
-	private Date DataCad;
+	private Date data_cad;
 	@NotNull
-	private String Cargo;
+	private String cargo;
 	@NotNull
-	private String UfNasc;
+	private String uf_nasc;
 	@NotNull
 	@DecimalMax("999999.0") @DecimalMin("0.0") 
-	private Double Salario;
+	private Double salario;
 	@NotNull
-	private String Status;
+	private String status;
 	
 	public Funcionario() {
 		
@@ -53,61 +53,87 @@ public class Funcionario implements Serializable{
 	public void setIdFuncionario(Long idFuncionario) {
 		id = idFuncionario;
 	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
+
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
+
 	public String getCpf() {
-		return Cpf;
+		return cpf;
 	}
+
 	public void setCpf(String cpf) {
-		Cpf = cpf;
+		this.cpf = cpf;
 	}
-	public Date getDataCad() {
-		return DataCad;
+
+	public Date getData_cad() {
+		return data_cad;
 	}
-	public void setDataCad(Date dataCad) {
-		DataCad = dataCad;
+
+	public void setData_cad(Date data_cad) {
+		this.data_cad = data_cad;
 	}
+
 	public String getCargo() {
-		return Cargo;
+		return cargo;
 	}
+
 	public void setCargo(String cargo) {
-		Cargo = cargo;
+		this.cargo = cargo;
 	}
-	public String getUfNasc() {
-		return UfNasc;
+
+	public String getUf_nasc() {
+		return uf_nasc;
 	}
-	public void setUfNasc(String ufNasc) {
-		UfNasc = ufNasc;
+
+	public void setUf_nasc(String uf_nasc) {
+		this.uf_nasc = uf_nasc;
 	}
+
 	public Double getSalario() {
-		return Salario;
+		return salario;
 	}
+
 	public void setSalario(Double salario) {
-		Salario = salario;
+		this.salario = salario;
 	}
+
 	public String getStatus() {
-		return Status;
+		return status;
 	}
+
 	public void setStatus(String status) {
-		Status = status;
+		this.status = status;
 	}
-	
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((Cargo == null) ? 0 : Cargo.hashCode());
-		result = prime * result + ((Cpf == null) ? 0 : Cpf.hashCode());
-		result = prime * result + ((DataCad == null) ? 0 : DataCad.hashCode());
-		result = prime * result + ((Nome == null) ? 0 : Nome.hashCode());
-		result = prime * result + ((Salario == null) ? 0 : Salario.hashCode());
-		result = prime * result + ((Status == null) ? 0 : Status.hashCode());
-		result = prime * result + ((UfNasc == null) ? 0 : UfNasc.hashCode());
+		result = prime * result + ((cargo == null) ? 0 : cargo.hashCode());
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((data_cad == null) ? 0 : data_cad.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((salario == null) ? 0 : salario.hashCode());
+		result = prime * result + ((status == null) ? 0 : status.hashCode());
+		result = prime * result + ((uf_nasc == null) ? 0 : uf_nasc.hashCode());
 		return result;
 	}
 
@@ -120,46 +146,49 @@ public class Funcionario implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		Funcionario other = (Funcionario) obj;
-		if (Cargo == null) {
-			if (other.Cargo != null)
+		if (cargo == null) {
+			if (other.cargo != null)
 				return false;
-		} else if (!Cargo.equals(other.Cargo))
+		} else if (!cargo.equals(other.cargo))
 			return false;
-		if (Cpf == null) {
-			if (other.Cpf != null)
+		if (cpf == null) {
+			if (other.cpf != null)
 				return false;
-		} else if (!Cpf.equals(other.Cpf))
+		} else if (!cpf.equals(other.cpf))
 			return false;
-		if (DataCad == null) {
-			if (other.DataCad != null)
+		if (data_cad == null) {
+			if (other.data_cad != null)
 				return false;
-		} else if (!DataCad.equals(other.DataCad))
-			return false;
-		if (Nome == null) {
-			if (other.Nome != null)
-				return false;
-		} else if (!Nome.equals(other.Nome))
-			return false;
-		if (Salario == null) {
-			if (other.Salario != null)
-				return false;
-		} else if (!Salario.equals(other.Salario))
-			return false;
-		if (Status == null) {
-			if (other.Status != null)
-				return false;
-		} else if (!Status.equals(other.Status))
-			return false;
-		if (UfNasc == null) {
-			if (other.UfNasc != null)
-				return false;
-		} else if (!UfNasc.equals(other.UfNasc))
+		} else if (!data_cad.equals(other.data_cad))
 			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
 		} else if (!id.equals(other.id))
 			return false;
+		if (nome == null) {
+			if (other.nome != null)
+				return false;
+		} else if (!nome.equals(other.nome))
+			return false;
+		if (salario == null) {
+			if (other.salario != null)
+				return false;
+		} else if (!salario.equals(other.salario))
+			return false;
+		if (status == null) {
+			if (other.status != null)
+				return false;
+		} else if (!status.equals(other.status))
+			return false;
+		if (uf_nasc == null) {
+			if (other.uf_nasc != null)
+				return false;
+		} else if (!uf_nasc.equals(other.uf_nasc))
+			return false;
 		return true;
 	}
+	
+	
+	
 }

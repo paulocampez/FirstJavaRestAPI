@@ -31,9 +31,22 @@ public class FuncionarioService {
 		return funcionarioRepository.findByStatus(status);
 	}
 	
-	/*public List<Funcionario> getBySalary(Double n1, Double n2){
+	public List<Funcionario> getBySalary(Double n1, Double n2){
+		double bigger = 0.0;
+		double lower = 0.0;
 		
-		return funcionarioRepository.findBySalary(n1,n2);
+		if(n1 > n2)
+		{
+			bigger = n1;
+			lower = n2;
+		}
+		else
+		{
+			bigger = n2;
+			lower = n1;
+		}
+		
+		return funcionarioRepository.findBySalary(lower,bigger);
 	}
 	
 	public List<Funcionario> getByUf(String uf){
@@ -43,7 +56,18 @@ public class FuncionarioService {
 	
 	public List<Funcionario> getByDate(Date d1, Date d2)
 	{
-		return funcionarioRepository.findByDate(d1, d2);
+		Date before = new Date();
+		Date after = new Date();
+		   if (d1.compareTo(d2) > 0) {
+			   before = d2;
+			   after = d1;
+		   }
+		   else {
+			   before = d1;
+			   after = d2;
+		   }
+
+		return funcionarioRepository.findByDate(before, after);
 	}
 	
 	public List<Funcionario> getByName(String name)
@@ -64,5 +88,5 @@ public class FuncionarioService {
 	public List<Funcionario> getByJob(String job)
 	{
 		return funcionarioRepository.findByJob(job);
-	}*/
+	}
 }
