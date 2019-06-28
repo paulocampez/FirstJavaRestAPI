@@ -20,17 +20,18 @@ componentDidMount(){
 render() { 
   return (
     <Router>
-      <div className="container">
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-          <a className="navbar-brand">React Axios App</a>
-          <div className="collapse navbar-collapse" id="navbarSupportedContent">
+     
+        <nav>
+
+          <div className="toggle" id="navbarSupportedContent"><i className="fas fa-bars menu"></i></div>
             <ul className="navbar-nav mr-auto">
-              <li className="nav-item"><Link to={'/create'} className="nav-link">Create</Link></li>
-              <li className="nav-item"><Link to={'/index'} className="nav-link">List</Link></li>
+              <li className=""><Link to={'/create'} className="">Create</Link></li>
+              <li className=""><Link to={'/index'} className="">List</Link></li>
             </ul>
             <hr />
-          </div>
+
         </nav>
+        <div className="container">
         <Switch>
             <Route exact path='/create' component={ Create } />
             <Route path='/index' component={ Index } />
