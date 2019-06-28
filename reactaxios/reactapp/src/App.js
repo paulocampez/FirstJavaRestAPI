@@ -1,70 +1,76 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom'
-import { Route } from 'react-router-dom'
-import Header from './components/layout/Header'
-import AddToDo from './components/AddToDo'
-import Todos from './components/Todos'
+import React, { useState, Fragment } from 'react'
+import AddUserForm from './forms/AddUserForm'
+import EditUserForm from './forms/EditUserForm'
+import UserTable from './tables/UserTable'
 
-import './App.css';
-import axios from 'axios'
+const App = () => {
+	// Data
+	const usersData = [
+		{ id: 1, name: 'Tania', username: 'floppydiskette' },
+		{ id: 2, name: 'Craig', username: 'siliconeidolon' },
+		{ id: 3, name: 'Ben', username: 'benisphere' },
+	]
 
-class App extends Component {
-  state = {
-      todos:[]
+	const initialFormState = { id: null, name: '', username: '' }
 
-  }
+	// Setting state
+	const [ users, setUsers ] = useState(usersData)
+	const [ currentUser, setCurrentUser ] = useState(initialFormState)
+	const [ editing, setEditing ] = useState(false)
 
-   addTodo = (title) =>{
-        axios.post('http://localhost:8080/home',{
-            title: title,
-            completed: false
+	// CRUD operations
+	const addUser = user => {
+		user.id = users.length + 1
+		setUsers([ ...users, user ])
+	}
 
-        }).then(res=> this.setState({todos:[...this.state.todos,res.data]}));
-    }
-    //Toggle complete
-    delTodo =(id) =>{
-        axios.delete(`http://localhost:8080/home/$cpf`).then(res => this.setState({todos:[...this.state.todos.filter(todo => todo.id !== id)]}));
+	const deleteUser = id => {
+		setEditing(false)
 
-    }
-    markComplete = (id)=>{
-        this.setState({todos:this.state.todos.map(todo =>{
-            if(todo.id === id){
-                todo.completed =!todo.completed
-            }
-            return todo;
-        })
-        });
-    }
+		setUsers(users.filter(user => user.id !== id))
+	}
 
-  render() {
-    return (
-        <Router>
-            <div className="App">
-                <div className="container">
-                    <Header/>
-                    <Route exact path="/" render={props => (
-                            <React.Fragment>
+	const updateUser = (id, updatedUser) => {
+		setEditing(false)
 
-                                <AddToDo addTodo={this.addTodo}/>
-                                <Todos todos={this.state.todos} markComplete={this.markComplete}
-                                       delTodo={this.delTodo}/>
+		setUsers(users.map(user => (user.id === id ? updatedUser : user)))
+	}
 
-                            </React.Fragment>
+	const editRow = user => {
+		setEditing(true)
 
-                        )}/>
-                </div>
-            </div>
-        </Router>
-    );
+		setCurrentUser({ id: user.id, name: user.name, username: user.username })
+	}
+
+	return (
+		<div className="container">
+			<h1>CRUD App with Hooks</h1>
+			<div className="flex-row">
+				<div className="flex-large">
+					{editing ? (
+						<Fragment>
+							<h2>Edit user</h2>
+							<EditUserForm
+								editing={editing}
+								setEditing={setEditing}
+								currentUser={currentUser}
+								updateUser={updateUser}
+							/>
+						</Fragment>
+					) : (
+						<Fragment>
+							<h2>Add user</h2>
+							<AddUserForm addUser={addUser} />
+						</Fragment>
+					)}
+				</div>
+				<div className="flex-large">
+					<h2>View users</h2>
+					<UserTable users={users} editRow={editRow} deleteUser={deleteUser} />
+				</div>
+			</div>
+		</div>
+	)
 }
-  getTitles() {
-    return this.state.todos.map(item => item.nome)
-  }
-  componentDidMount(){
-      axios.get('http://localhost:8080/home')
-        .then(res =>this.setState({todos:res.data}));
-  }
-}
 
-
-export default App;
+export default App
