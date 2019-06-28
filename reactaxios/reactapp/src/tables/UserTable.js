@@ -1,37 +1,26 @@
 import React from 'react'
+import Funcionario from '../components/Funcionario';
 
 const UserTable = props => (
-  <table>
+  <table className="table table-striped table-condensed">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Username</th>
-        <th>Actions</th>
+      <th>Nome</th>
+        <th>Cargo</th>
+        <th>Cpf</th>
+        <th>Data de Cadastro</th>
+        <th>Salario</th>
+        <th>UF</th>
+        <th>Status</th>
       </tr>
     </thead>
     <tbody>
       {props.users.length > 0 ? (
         props.users.map(user => (
-          <tr key={user.id}>
-            <td>{user.name}</td>
-            <td>{user.username}</td>
-            <td>
-              <button
-                onClick={() => {
-                  props.editRow(user)
-                }}
-                className="button muted-button"
-              >
-                Edit
-              </button>
-              <button
-                onClick={() => props.deleteUser(user.id)}
-                className="button muted-button"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
+            <Funcionario 
+                key={user.id}
+                user={user} 
+            />
         ))
       ) : (
         <tr>
