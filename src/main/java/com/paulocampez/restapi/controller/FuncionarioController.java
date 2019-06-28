@@ -4,8 +4,10 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.paulocampez.restapi.model.Funcionario;
 import com.paulocampez.restapi.service.FuncionarioService;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/home")
 public class FuncionarioController {
@@ -51,9 +54,9 @@ public class FuncionarioController {
 		return ResponseEntity.status(HttpStatus.CREATED).body(entity);
 	}
 	
-	@GetMapping("/{salary1}/{salary2}")
-	public List<Funcionario> getBySalary(@RequestParam(value = "salary1", required = true) Double salary1,
-									 @RequestParam(value = "salary2", required = true) Double salary2 )
+	@GetMapping("/Salario/{salary1}/{salary2}")
+	public List<Funcionario> getBySalary(@RequestParam(value = "salary1", required = true) double salary1,
+									 @RequestParam(value = "salary2", required = true) double salary2 )
 	{
 		return funcionarioService.getBySalary(salary1,salary2);
 	}
@@ -65,8 +68,8 @@ public class FuncionarioController {
 	}
 	
 	@GetMapping("/{date1}/{date2}")
-	public List<Funcionario> getByDate(@RequestParam(value = "date1", required = true) Date date1,
-									   @RequestParam(value = "date2", required = true) Date date2)
+	public List<Funcionario> getByDate(@RequestParam(value = "date1", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date1,
+									   @RequestParam(value = "date2", required = true) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date2)
 	{
 		return funcionarioService.getByDate(date1, date2);
 	}
@@ -82,9 +85,9 @@ public class FuncionarioController {
 		return funcionarioService.getByTaxId(cpf);
 	}
 	@DeleteMapping("/{cpf}")
-	public boolean deleteByTaxId(@RequestParam(value = "cpf", required = true) String cpf)
+	public void deleteByTaxId(@RequestParam(value = "cpf", required = true) String cpf)
 	{
-		return funcionarioService.DeleteByTaxId(cpf);
+		funcionarioService.DeleteByTaxId(cpf);
 	}
 	@GetMapping("/{cargo}")
 	public List<Funcionario> getByJob(@RequestParam(value = "cargo", required = true) String cargo)

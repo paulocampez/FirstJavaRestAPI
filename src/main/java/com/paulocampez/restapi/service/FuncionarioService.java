@@ -80,9 +80,9 @@ public class FuncionarioService {
 		return funcionarioRepository.findByTaxId(cpf);
 	}
 	
-	public boolean DeleteByTaxId(String cpf)
+	public void DeleteByTaxId(String cpf)
 	{
-		return funcionarioRepository.deleteByTaxId(cpf);
+		funcionarioRepository.deleteByTaxId(cpf);
 	}
 	
 	public List<Funcionario> getByJob(String job)
